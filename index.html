@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Portfolio - Nithin J S</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth; /* smooth sliding when clicking menu links */
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #0f172a, #020617);
+      color: #faf8f8;
+      min-height: 100vh;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Navbar */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      background: rgba(27, 73, 97, 0.85);
+      border-bottom: 1px solid rgba(242, 244, 248, 0.493);
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.7rem 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: 0.05em;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.2rem;
+      font-size: 0.95rem;
+    }
+
+    nav li a {
+      padding-bottom: 3px;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s, color 0.2s, transform 0.2s;
+    }
+
+    nav li a:hover {
+      border-color: #38bdf8;
+      color: #bae6fd;
+      transform: translateY(-1px);
+    }
+
+    .btn-theme {
+      padding: 0.3rem 0.7rem;
+      font-size: 0.85rem;
+      border-radius: 999px;
+      border: 1px solid #4b5563;
+      background: rgba(15, 23, 42, 0.7);
+      cursor: pointer;
+      color: #e5e7eb;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .btn-theme:hover {
+      background: #111827;
+      transform: translateY(-1px);
+    }
+
+    /* Main layout */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem 1.2rem 3rem;
+    }
+
+    section {
+      padding: 3rem 0;
+      border-bottom: 1px solid rgba(55, 65, 81, 0.6);
+      scroll-margin-top: 80px; /* so section title not hidden under navbar */
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      display: inline-block;
+      border-left: 4px solid #38bdf8;
+      padding-left: 0.6rem;
+    }
+
+    /* Hero section */
+    #hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+      padding-top: 2.5rem;
+    }
+
+    .hero-text {
+      flex: 1 1 280px;
+    }
+
+    .hero-text h1 {
+      font-size: 2.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-text h2 {
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #fafafc;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-highlight {
+      color: #09b5ff;
+      font-weight: 600;
+    }
+
+    .hero-buttons {
+      margin-top: 1.3rem;
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary,
+    .btn-outline {
+      padding: 0.6rem 1rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s, border-color 0.2s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+      color: #0f172a;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(56, 189, 248, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 36px rgba(56, 189, 248, 0.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border-color: #4b5563;
+      color: #e5e7eb;
+    }
+
+    .btn-outline:hover {
+      border-color: #38bdf8;
+      background: rgba(15, 23, 42, 0.8);
+      transform: translateY(-1px);
+    }
+
+    .hero-photo {
+      flex: 0 0 220px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-photo-inner {
+      width: 250px;
+      height: 250px;
+      border-radius: 999px;
+      border: 3px solid #003146;
+      padding: 6px;
+      background: radial-gradient(circle at top left, #38bdf8, #1e293b);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 15px 40px rgba(74, 79, 111, 0.8);
+    }
+
+    .hero-photo-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 999px;
+    }
+
+    /* Two-column sections */
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+      gap: 1.8rem;
+      align-items: flex-start;
+    }
+
+    .card {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 1rem;
+      padding: 1.2rem;
+      border: 1px solid rgba(55, 65, 81, 0.8);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.9);
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 1);
+      border-color: #38bdf8;
+    }
+
+    .muted {
+      color: #9ca3af;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(31, 41, 55, 0.95);
+      border: 1px solid rgba(75, 85, 99, 0.9);
+      font-size: 0.8rem;
+    }
+
+    /* Education with small icon */
+    .edu-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 0.8rem;
+    }
+
+    .edu-item {
+      display: flex;
+      gap: 0.8rem;
+      align-items: flex-start;
+    }
+
+    .edu-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 0.9rem;
+      overflow: hidden;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      flex-shrink: 0;
+      background: rgba(15, 23, 42, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .edu-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .edu-content h3 {
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .edu-meta {
+      font-size: 0.85rem;
+      color: #9ca3af;
+      margin-bottom: 0.3rem;
+    }
+
+    /* Experience */
+    .exp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .exp-item {
+      display: flex;
+      gap: 0.8rem;
+      align-items: flex-start;
+    }
+
+    .exp-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 0.9rem;
+      overflow: hidden;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      flex-shrink: 0;
+      background: rgba(15, 23, 42, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .exp-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .exp-content h3 {
+      font-size: 0.98rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .exp-meta {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-bottom: 0.2rem;
+    }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .project-card {
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: 0.9rem;
+      padding: 1rem;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 35px rgba(15, 23, 42, 1);
+      border-color: #38bdf8;
+    }
+
+    .project-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .project-meta {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-bottom: 0.4rem;
+    }
+
+    .project-link {
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+      display: inline-block;
+      border-bottom: 1px dashed #38bdf8;
+      cursor: pointer;
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+    }
+
+    .skills-group h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
+    }
+
+    /* Contact */
+    .contact-list {
+      list-style: none;
+      font-size: 0.9rem;
+      display: grid;
+      gap: 0.4rem;
+    }
+
+    .contact-list span {
+      color: #8c0303;
+      font-size: 0.85rem;
+    }
+
+    footer {
+      text-align: center;
+      padding-top: 1.5rem;
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+      }
+
+      #hero {
+        flex-direction: column-reverse;
+        text-align: center;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <div class="nav-container">
+      <div class="logo">Menu</div>
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="btn-theme" id="themeToggle">Dark / Light</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="hero">
+      <div class="hero-text">
+        <h1>Hi, I'm <span class="hero-highlight">Nithin J S</span> 👋</h1>
+        <h2>Aspiring Finance Leader | Working at IBM</h2>
+        <p class="muted">
+          
+
+        <div class="hero-buttons">
+          <a href="#contact" class="btn-primary">Contact Me</a>
+          <a href="#experience" class="btn-outline">View My Experience</a>
+        </div>
+      </div>
+
+      <div class="hero-photo">
+        <div class="hero-photo-inner">
+          <!-- YOUR PHOTO -->
+          <img src="my-photo.jpeg" alt="My Photo" />
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+      <h2 class="section-title">About Me</h2>
+
+      <div class="card">
+        <p class="muted">
+          I am an MBA graduate specializing in Finance and Business Analytics,
+          Currently working as a Process Associate at IBM.With strong skills in Advanced Excel, Power BI, Tableau, and  SQL, I enjoy turning data into meaningful insights that support business decisions.
+        </p>
+
+        <div class="tag-list">
+          <span class="tag">Finance</span>
+          <span class="tag">Business Analytics</span>
+          <span class="tag">Advance Excel</span>
+          <span class="tag">Power BI</span>
+          <span class="tag">Tableau</span>
+          <span class="tag">SQl</span>
+          <span class="tag">SAP FICO</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+      <h2 class="section-title">Education</h2>
+
+      <div class="card">
+        <div class="edu-list">
+          <!-- Edu 1 -->
+          <div class="edu-item">
+            <div class="edu-icon">
+              <!-- small education icon -->
+              <img src="edu-logo.jpeg" alt="Education Icon" />
+            </div>
+            <div class="edu-content">
+              <h3>MBA – Finance & Business Analytics</h3>
+              <div class="edu-meta">CMR University, Bengaluru</div>
+              <p class="muted">Graduated: October 2025</p>
+            </div>
+          </div>
+
+          <!-- Edu 2 -->
+          <div class="edu-item">
+            <div class="edu-icon">
+              <img src="edu-logo1.jpeg" alt="Education Icon" />
+            </div>
+            <div class="edu-content">
+              <h3>B.Com</h3>
+              <div class="edu-meta">University of Mysore - Accounts </div>
+              <p class="muted">Graduated: August 2023</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience">
+      <h2 class="section-title">Experience</h2>
+
+      <div class="two-col">
+        <!-- Experience List -->
+        <div class="card">
+          <h3>Professional Experience</h3>
+
+          <div class="exp-list" style="margin-top: 0.8rem;">
+            <!-- Job 1 -->
+            <div class="exp-item">
+              <div class="exp-logo">
+                <img src="company-logo.png" alt="Company Logo" />
+              </div>
+              <div class="exp-content">
+                <h3>Process Associate – Finance & Administration</h3>
+                <div class="exp-meta">IBM (Bengaluru) | November 2025 – Present</div>
+                <p class="muted">
+                  Working in Finance & Accounts administration delivery, supporting processes,
+                  reconciliations, and reporting with quality and accuracy.
+                </p>
+              </div>
+            </div>
+
+            <!-- Internship -->
+            <div class="exp-item">
+              <div class="exp-logo">
+                <img src="company-logo1.jpeg" alt="Bank Logo" />
+              </div>
+              <div class="exp-content">
+                <h3>Intern – Finance</h3>
+                <div class="exp-meta">DCC Bank | Internship</div>
+                <p class="muted">
+                  Gained hands-on exposure to core banking operations, documentation,
+                  and financial analysis.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Highlights -->
+        <div class="card">
+          <h3>Highlights</h3>
+          <ul class="muted" style="margin-top: 0.6rem; list-style: disc; padding-left: 1.1rem;">
+            <li>Strong foundation in accounting and corporate finance.</li>
+            <li>Experience with dashboards, reports, and KPI tracking.</li>
+            <li>Comfortable working with large datasets and Excel models.</li>
+            <li>Interested in fintech, investment analysis, and business strategy.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <h2 class="section-title">Projects</h2>
+
+      <div class="card">
+        <p class="muted">
+          Some of the academic and personal projects I have worked on, combining finance and analytics.
+        </p>
+
+        <div class="projects-grid">
+          <!-- Project 1 -->
+          <div class="project-card">
+            <h3>“PREDICTIVE FINANCIAL MODELING AND STRATEGIC ANALYSIS OF INFOSYS LTD. IN THE IT SERVICES INDUSTRY”</h3>
+            <div class="project-meta">Excel · Power BI </div>
+            <p class="muted">
+              1.Developed a predictive financial model to forecast Infosys’s revenue, profitability, and key financial metrics<br>
+              2.Conducted strategic analysis using SWOT, PESTEL, and Porter’s Five Forces to evaluate industry positioning.<br>
+              3.Performed valuation and competitor benchmarking against TCS, Wipro, and HCL Tech.<br>
+              4.Identified major business drivers and provided data-based strategic recommendations.<br>
+
+
+            </p>
+            
+          </div>
+
+          <!-- Project 2 -->
+          <div class="project-card">
+            <h3>Sales & Customer Analytics</h3>
+            <div class="project-meta">Excel</div>
+            <p class="muted">
+              1.Analyzed the growth of India’s FinTech ecosystem across payments, lending, insurance, and wealth-tech segments.<br>
+              2.Identified major opportunities driven by UPI adoption, digitalisation, regulatory support, and increasing financial inclusion.<br>
+              3.Examined key challenges including cybersecurity risks, regulatory complexity, data privacy, and technology adoption gaps.<br>
+              4.Assessed the impact of innovations like AI, blockchain, and digital lending platforms on the financial sector.<br>
+            </p>
+      
+          </div>
+
+          
+            
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <h2 class="section-title">Skills</h2>
+
+      <div class="card">
+        <div class="skills-grid">
+          <div class="skills-group">
+            <h3>Technical</h3>
+            <div class="tag-list">
+              <span class="tag">Advanced Excel</span>
+              <span class="tag">MySQL</span>
+              <span class="tag">Power BI</span>
+              <span class="tag">Tableau</span>
+              <span class="tag">SAP</span>
+            </div>
+          </div>
+
+          <div class="skills-group">
+            <h3>Finance</h3>
+            <div class="tag-list">
+              <span class="tag">Financial Forecasting & Modelling</span>
+              <span class="tag">Financial Reporting</span>
+              <span class="tag">FP&A and Budgeting</span>
+              <span class="tag">Data Visualization & Dashboarding</span>
+            </div>
+          </div>
+
+          <div class="skills-group">
+            <h3>Soft Skills</h3>
+            <div class="tag-list">
+              <span class="tag">Strategic Thinker</span>
+              <span class="tag">Teamwork</span>
+              <span class="tag">Problem Solving</span>
+              <span class="tag">Adaptability</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2 class="section-title">Contact</h2>
+
+      <div class="two-col">
+        <div class="card">
+          <h3>Get in Touch</h3>
+          <p class="muted" style="margin-top: 0.6rem;">
+            Feel free to contact me for job opportunities, collaborations, or just to connect.
+          </p>
+
+          <ul class="contact-list" style="margin-top: 0.8rem;">
+            <li><span>Name</span><br />Nithin J S</li>
+            <li><span>Email</span><br />nithinjs8073@gmail.com</li>
+            <li><span>Location</span><br />Bengaluru, India</li>
+            <li><span>LinkedIn</span><br />www.linkedin.com/in/nithinjs</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Quick Info</h3>
+          <ul class="contact-list" style="margin-top: 0.6rem;">
+            <li><span>Current Role</span><br />Process Associate – Finance & Accounts</li>
+            <li><span>Education</span><br />MBA – Finance & Business Analytics</li>
+            <li><span>Tools</span><br />Advance Excel, Power BI, Tableau, MySQL, SAP</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Nithin J S · All rights reserved.
+    </footer>
+  </main>
+
+  <!-- Small JS for theme + year -->
+  <script>
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Simple dark/light toggle
+    const btn = document.getElementById("themeToggle");
+    let isDark = true;
+
+    btn.addEventListener("click", () => {
+      isDark = !isDark;
+      if (isDark) {
+        document.body.style.background = "linear-gradient(135deg, #0f172a, #020617)";
+        document.body.style.color = "#e5e7eb";
+        btn.textContent = "Dark / Light";
+      } else {
+        document.body.style.background = "#f9fafb";
+        document.body.style.color = "#111827";
+        btn.textContent = "Light / Dark";
+      }
+    });
+  </script>
+</body>
+</html>
